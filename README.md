@@ -22,7 +22,8 @@ umount loopdir```
 ####Copy modified preseed.cfg####
 ```mkdir irmod
 cd irmod
-gzip -d < ../myiso/install.amd/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
+gzip -d < ../myiso/install.amd/initrd.gz | cpio --extract --verbose \
+--make-directories --no-absolute-filenames
 cp ../preseed.cfg preseed.cfg
 sudo su
 find . | cpio -H newc --create --verbose | gzip -9 > ../myiso/install.amd/initrd.gz
@@ -35,4 +36,5 @@ md5sum `find -follow -type f` > md5sum.txt
 cd ..```
 
 ####Create ISO####
-```genisoimage -o netinst.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./myiso```
+```genisoimage -o netinst.iso -r -J -no-emul-boot -boot-load-size 4 \
+-boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./myiso```
